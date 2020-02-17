@@ -36,18 +36,18 @@ Para este ejercicio debes generar un CMS, el cual debe contener:
   ```bash
   cat createDatabase.sql | mysql -u $(user) -p
   ```
-  4. Crear tablas:
+  4. Configurar archivo `.env` Linea 32 (reemplazar **$(user)** y **$(pass)** con usuario y contraseña de mysql):
+  ```
+  DATABASE_URL=mysql://$(user):$(pass)@127.0.0.1:3306/usercontrol?serverVersion=5.7
+  ```
+  5. Crear tablas:
   ```bash
   php bin/console doctrine:schema:update --dump-sql
   php bin/console doctrine:schema:update --force
   ```
-  5. Agregar usuarios de prueba (reemplazar **$(user)** con usuario mysql):
+  6. Agregar usuarios de prueba (reemplazar **$(user)** con usuario mysql):
   ```bash
   cat addData.sql | mysql -u $(user) -p
-  ```
-  6. Configurar archivo `.env` Linea 32 (reemplazar **$(user)** y **$(pass)** con usuario y contraseña de mysql):
-  ```
-  DATABASE_URL=mysql://$(user):$(pass)@127.0.0.1:3306/UserControl?serverVersion=5.7
   ```
 
 ## Ejecución
