@@ -56,11 +56,11 @@ Para este ejercicio debes generar un CMS, el cual debe contener:
 ## Usuarios de Prueba
 
   - Administrador
-  > **Username:** admin
-  > **Password:** password
+    - **Username:** admin
+    - **Password:** password
 
   - Usuario
-  > **Username:** admin
-  > **Password:** password
+    - **Username:** admin
+    - **Password:** password
 
 ###### Made with :heart: in **CDMX**
