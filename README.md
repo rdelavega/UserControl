@@ -22,6 +22,11 @@ Para este ejercicio debes generar un CMS, el cual debe contener:
   - Se añadirán puntos si usas algún Framework como Laravel o Symfony.
   - Es importante compartir tu razonamiento y justificar tus decisiones.
 
+## Desarrollo
+
+  - Framework utilizado: **Symfony CLI version v4.12.8**
+  - CSS Framework utilizado: **MaterializeCSS version v1.0.0**
+
 ## MVC (Modelo Vista Controlador)
 
 ### Controladores
