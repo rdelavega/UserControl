@@ -65,7 +65,7 @@ class DepartmentController extends AbstractController
           $em->flush();
           $this->addFlash('success', 'Complete task');
         } catch (\Exception $e) {
-          $this->addFlash('notice', 'Incomplete task (SQL)');
+          $this->addFlash('notice', 'Incomplete task (SQL foreign key)');
         }
 
         return $this->redirect($this->generateUrl('department.list'));
