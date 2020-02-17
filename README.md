@@ -1,6 +1,6 @@
 # UserControl
 
-Control sobre usuarios (tipo y departamento al que sson asignados).
+Control sobre usuarios (tipo y departamento al que son asignados).
 
 ## Ejercicio
 
