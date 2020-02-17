@@ -35,8 +35,8 @@
             <td>{{ user.department }}</td>
             <td>
               {% if user.username == app.user.username %}
-                <a class="btn-floating small tooltipped disabled" data-position="left" data-tooltip="Editar Usuario" href=" {{ path('edit', {id: user.id} ) }} ">
-                  <i class="material-icons">edit</i>
+                <a class="btn-floating small tooltipped" data-position="left" data-tooltip="Editar Usuario" href=" {{ path('edit', {id: user.id} ) }} ">
+                  <i class="material-icons green">edit</i>
                 </a>
                 <a class="btn-floating small tooltipped disabled" data-position="left" data-tooltip="Eliminar Usuario" href=" {{ path('delete', {id: user.id} ) }} ">
                   <i class="material-icons">delete</i>
