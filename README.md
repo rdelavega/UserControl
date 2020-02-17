@@ -60,7 +60,7 @@ Para este ejercicio debes generar un CMS, el cual debe contener:
     - **Password:** password
 
   - Usuario
-    - **Username:** admin
+    - **Username:** user
     - **Password:** password
 
 ###### Made with :heart: in **CDMX**
