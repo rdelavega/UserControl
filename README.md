@@ -45,6 +45,10 @@ Para este ejercicio debes generar un CMS, el cual debe contener:
   ```bash
   cat addData.sql | mysql -u $(user) -p
   ```
+  6. Configurar archivo `.env` Linea 32 **(reemplazar $(user) y $(pass) con usuario y contraseña de mysql)**
+  ```
+  DATABASE_URL=mysql://$(user):$(pass)@127.0.0.1:3306/UserControl?serverVersion=5.7
+  ```
 
 ## Ejecución
 
