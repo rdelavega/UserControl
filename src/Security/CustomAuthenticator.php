@@ -91,7 +91,14 @@ class CustomAuthenticator extends AbstractFormLoginAuthenticator implements Pass
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
-            return new RedirectResponse($targetPath);
+            $user = $token->getUser();
+
+            if ($user->getRoles()[0] == 'ROLE_ADMIN') {
+              return new RedirectResponse($this->urlGenerator->generate('index'));
+            } else {
+              return new RedirectResponse($this->urlGenerator->generate('profile'));
+            }
+
         }
 
         // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));

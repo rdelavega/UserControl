@@ -2,6 +2,65 @@
 
 {% block body %}
 
-  <div class="container"></div>
+  <div class="container">
+    <h1>User List</h1>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <td></td>
+          <td>Name</td>
+          <td>Last Name</td>
+          <td>Username</td>
+          <td>E-mail</td>
+          <td>Type</td>
+          <td>Department</td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td style="padding-top: 5px; padding-bottom: 0px; padding-left: 30px; padding-left: 30px; width: 150px;">
+              <img style="width: 50px; height: 50px;" class="circle materialboxed" src="{{ '/images/' ~ user.image }}">
+            </td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lname }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            {% if 'ROLE_ADMIN' in user.roles %}
+              <td>Admin</td>
+            {% else %}
+              <td>User</td>
+            {% endif %}
+            <td>{{ user.department }}</td>
+            <td>
+              {% if user.username == app.user.username %}
+                <a class="btn-floating small tooltipped disabled" data-position="left" data-tooltip="Editar Usuario" href=" {{ path('edit', {id: user.id} ) }} ">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a class="btn-floating small tooltipped disabled" data-position="left" data-tooltip="Eliminar Usuario" href=" {{ path('delete', {id: user.id} ) }} ">
+                  <i class="material-icons">delete</i>
+                </a>
+              {% else %}
+                <a class="btn-floating small tooltipped" data-position="left" data-tooltip="Editar Usuario" href=" {{ path('edit', {id: user.id} ) }} ">
+                  <i class="material-icons green">edit</i>
+                </a>
+                <a class="btn-floating small tooltipped" data-position="left" data-tooltip="Eliminar Usuario" href=" {{ path('delete', {id: user.id} ) }} ">
+                  <i class="material-icons red">delete</i>
+                </a>
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red waves-effect waves-light tooltipped" data-position="left" data-tooltip="Agregar Usuario" href=" {{ path('register') }} ">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
 
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <div class="container">
+
+    <h1>Add Department</h1>
+
+    <div class="row">
+
+      {{ form_start(form) }}
+
+      <div class="col s12">
+        <div class="input-field">
+          <i class="material-icons prefix">assignment_late</i>
+          {{ form_widget(form.name) }}
+          <label for="icon_prefix">Department Name</label>
+        </div>
+      </div>
+
+      <div class="col s12 center">
+        {{ form_widget(form.save) }}
+      </div>
+
+      {{ form_end(form) }}
+
+    </div>
+
+  </div>
+
+{% endblock %}

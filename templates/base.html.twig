@@ -23,74 +23,100 @@
         </a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {% if is_granted('ROLE_ADMIN') %}
+              <li>
+                <a href=" {{ path('index') }} ">Home</a>
+              </li>
+              <li>
+                <a href="/department">Department</a>
+              </li>
+            {% else %}
+              <li>
+                <a href=" {{ path('profile') }} ">Profile</a>
+              </li>
+              {% endif%}
+              <li>
+                <img style="width: 40px; height: 40px; margin-top: 10px; margin-right: 10px; margin-left: 10px;" class="circle" src="{{ '/images/' ~ app.user.image }}">
+              </li>
+              <li style="margin-right: 5px;">
+                {{ app.user.name }}
+                {{ app.user.lname }}
+              </li>
+              <li>
+                <a href=" {{ path('app_logout') }} ">
+                  <i class="material-icons">close</i>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <ul class="sidenav" id="mobile-demo">
+          <li>
+            <div class="user-view">
+              <div class="background">
+                <img src="/images/black.jpg">
+              </div>
+              <a href="#"><img class="circle" src="{{ '/images/' ~ app.user.image }}"></a>
+              <a href="#">
+                <span class="white-text name">{{ app.user.name }}
+                  {{ app.user.lname }}</span></a>
+              <a href="#email">
+                <span class="white-text email">{{ app.user.username }}</span></a>
+            </div>
+          </li>
+          {% if is_granted('ROLE_ADMIN') %}
             <li>
-              <a>Home</a>
+              <a href=" {{ path('index') }} ">Home</a>
             </li>
             <li>
-              <a>Component</a>
+              <a href="/department">Department</a>
             </li>
+          {% else %}
             <li>
-              <a>Posts</a>
-            </li>
-            <li>
-              <a>
-                <i class="material-icons">close</i>
-              </a>
+              <a href=" {{ path('profile') }} ">Profile</a>
             </li>
           {% endif %}
+          <li>
+            <a class="waves-effect waves-light indigo btn-large" href=" {{ path('app_logout') }} ">
+              Logout
+            </a>
+          </li>
         </ul>
-      </div>
-    </nav>
+      {% endif %}
 
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <ul class="sidenav" id="mobile-demo">
-        <li>
-          <div class="user-view">
-            <div class="background">
-              <img src="">
-            </div>
-            <a href="#user"><img class="circle" src=""></a>
-            <a href="#name">
-              <span class="white-text name">John Doe</span></a>
-            <a href="#email">
-              <span class="white-text email">jdandturk@gmail.com</span></a>
+      {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <!--JavaScript at end of body for optimized loading-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="/js/master.js" charset="utf-8"></script>
+      {% endblock %}
+
+      {% block body %}{% endblock %}
+
+      <footer class="indigo lighten-1 page-footer relative">
+        <div class="container"></div>
+        <div class="indigo footer-copyright">
+          <div class="container center">
+            © 2020 Copyright Text
           </div>
-        </li>
-        <li>
-          <a>Home</a>
-        </li>
-        <li>
-          <a>Component</a>
-        </li>
-        <li>
-          <a>Posts</a>
-        </li>
-        <li>
-          <a class="waves-effect waves-light indigo btn-large">
-            Logout
-          </a>
-        </li>
-      </ul>
-    {% endif %}
+        </div>
+      </footer>
 
-    {% block body %}{% endblock %}
+      {% for message in app.flashes('notice') %}
+        <script>
+          M.toast({html: '{{message}}', classes: 'red'});
+        </script>
+      {% endfor %}
 
-    {% block javascripts %}
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-      <!--JavaScript at end of body for optimized loading-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-      <script type="text/javascript">
-        $(document).ready(function() {
-          $('.sidenav').sidenav();
-          $('select').formSelect();
-          $('.materialboxed').materialbox();
-          if ($('#user_save')) {
-            console.log("me");
-            $('#user_save').append('<i class="material-icons right">send</i>');
-          }
-        })
-      </script>
-    {% endblock %}
-  </body>
-</html>
+      {% for message in app.flashes('success') %}
+        <script>
+          M.toast({html: '{{message}}', classes: 'green'});
+        </script>
+      {% endfor %}
+
+    </body>
+  </html>
